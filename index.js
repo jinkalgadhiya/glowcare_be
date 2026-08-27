@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8080;
 
 // MongoDB connection
 require("./src/config/db");
+
 // Routes
 const authRoutes = require("./src/routes/auth.routes");
 const userRoutes = require("./src/routes/user.route");
@@ -25,12 +26,18 @@ const reviewRoutes = require("./src/routes/review.routes");
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
-  }),
+    origin: [
+      "http://localhost:5173",
+      "https://glowcare-fe.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
 );
 
 app.use(express.json());
 
+// Routes
 app.use("/", authRoutes);
 app.use("/users", userRoutes);
 app.use("/categories", categoryRoutes);
