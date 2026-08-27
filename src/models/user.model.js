@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
+    // ================= USER INFORMATION =================
+
     fullName: {
       type: String,
       required: true,
@@ -20,7 +22,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true,
     },
+
+    // ================= AUTHENTICATION =================
 
     password: {
       type: String,
@@ -28,16 +33,30 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
     },
 
-    createdAt: {
-        type: Date,
-        default: Date.now
+    // ================= ACCOUNT =================
+
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
     },
 
-    updatedAt: {
-        type: Date,
-        default: Date.now
-    }
+    status: {
+      type: String,
+      enum: ["Active", "Inactive"],
+      default: "Active",
+    },
+
+    // ================= PROFILE =================
+
+    profileImage: {
+      type: String,
+      default: "",
+    },
   },
+  {
+    timestamps: true,
+  }
 );
 
 const Users = mongoose.model("User", userSchema);

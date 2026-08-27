@@ -2,17 +2,55 @@ const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema(
   {
-    categoryName: {
+    // Menu where the category belongs
+    menuType: {
+      type: String,
+      enum: ["skincare", "haircare", "more"],
+      required: true,
+      trim: true,
+    },
+
+    // Main category or sub category
+    categoryType: {
+      type: String,
+      enum: ["main", "sub"],
+      required: true,
+      trim: true,
+    },
+
+    // Main category name
+    mainCategory: {
       type: String,
       required: true,
+      trim: true,
     },
+
+    // Sub category name
+    subCategory: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    // Category description
     description: {
       type: String,
       default: "",
+      trim: true,
     },
+
+    // Category banner image
+    bannerImage: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    // Category status
     status: {
-      type: Boolean,
-      default: true,
+      type: String,
+      enum: ["Active", "Inactive"],
+      default: "Active",
     },
   },
   {
@@ -20,4 +58,6 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Category", categorySchema);
+const Category = mongoose.model("Category", categorySchema);
+
+module.exports = Category;
