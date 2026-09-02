@@ -22,6 +22,7 @@ const addressRoutes = require("./src/routes/address.routes.js");
 const cartRoutes = require("./src/routes/cart.routes.js");
 const couponRoutes = require("./src/routes/coupon.routes");
 const reviewRoutes = require("./src/routes/review.routes");
+const returnRoutes = require("./src/routes/return.routes");
 
 // Middleware
 app.use(
@@ -49,6 +50,7 @@ app.use("/addresses", addressRoutes);
 app.use("/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/returns", returnRoutes);
 
 // Health check
 app.get("/health", (req, res) => {
