@@ -23,6 +23,7 @@ const cartRoutes = require("./src/routes/cart.routes.js");
 const couponRoutes = require("./src/routes/coupon.routes");
 const reviewRoutes = require("./src/routes/review.routes");
 const returnRoutes = require("./src/routes/return.routes");
+const paymentRoutes = require("./src/routes/payment.routes.js");
 
 // Middleware
 app.use(
@@ -51,7 +52,7 @@ app.use("/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/returns", returnRoutes);
-
+app.use("/payments", paymentRoutes);
 // Health check
 app.get("/health", (req, res) => {
   res.status(200).json({
